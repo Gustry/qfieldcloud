@@ -558,6 +558,7 @@ AUDITLOG_INCLUDE_TRACKING_MODELS = [
 SPECTACULAR_SETTINGS = {
     "TITLE": "QFieldCloud JSON API",
     "DESCRIPTION": "QFieldCloud JSON API",
-    "VERSION": "1.0.0",
-    "SERVE_INCLUDE_SCHEMA": True,
+    "VERSION": "v1",
+    "CONTACT": {"email": "info@opengis.ch"},
+    "LICENSE": {"name": "License"},
 }
