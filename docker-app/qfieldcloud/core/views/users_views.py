@@ -1,7 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
-from django.utils.decorators import method_decorator
-from drf_yasg.utils import swagger_auto_schema
 from qfieldcloud.core import pagination, permissions_utils, querysets_utils
 from qfieldcloud.core.models import Organization, Project
 from qfieldcloud.core.serializers import (
@@ -20,13 +18,6 @@ class ListUsersViewPermissions(permissions.BasePermission):
         return permissions_utils.can_list_users_organizations(request.user)
 
 
-@method_decorator(
-    name="get",
-    decorator=swagger_auto_schema(
-        operation_description="List all users and organizations",
-        operation_id="List users and organizations",
-    ),
-)
 class ListUsersView(generics.ListAPIView):
 
     serializer_class = PublicInfoUserSerializer
@@ -87,29 +78,6 @@ class RetrieveUpdateUserViewPermissions(permissions.BasePermission):
         return False
 
 
-@method_decorator(
-    name="get",
-    decorator=swagger_auto_schema(
-        operation_description="""Get a single user's (or organization) publicly
-        information or complete info if the request is done by the user
-        himself""",
-        operation_id="Get user",
-    ),
-)
-@method_decorator(
-    name="put",
-    decorator=swagger_auto_schema(
-        operation_description="Update a user",
-        operation_id="Update a user",
-    ),
-)
-@method_decorator(
-    name="patch",
-    decorator=swagger_auto_schema(
-        operation_description="Patch a user",
-        operation_id="Patch a user",
-    ),
-)
 class RetrieveUpdateUserView(generics.RetrieveUpdateAPIView):
     """Get or Update the authenticated user"""
 

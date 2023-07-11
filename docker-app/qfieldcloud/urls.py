@@ -50,16 +50,6 @@ urlpatterns = [
         RedirectView.as_view(url=settings.QFIELDCLOUD_ADMIN_URI, permanent=False),
         name="index",
     ),
-    re_path(
-        r"^swagger(?P<format>\.json|\.yaml)$",
-        schema_view.without_ui(cache_timeout=0),
-        name="schema-json",
-    ),
-    path(
-        "swagger/",
-        schema_view.with_ui("swagger", cache_timeout=0),
-        name="schema-swagger-ui",
-    ),
     path(
         settings.QFIELDCLOUD_ADMIN_URI + "api/files/<uuid:projectid>/",
         files_views.ListFilesView.as_view(permission_classes=[permissions.IsAdminUser]),
